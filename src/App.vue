@@ -8,7 +8,13 @@
       app
     >
       <v-list two-line dense>
-        <article-list />
+        <article-list
+          v-for="(article, idx) in articles"
+          v-bind:key="idx"
+          v-bind:title="article.title"
+          v-bind:date="article.publishedAt"
+          v-bind:img="article.urlToImage"
+        />
       </v-list>
     </v-navigation-drawer>
 
@@ -59,7 +65,27 @@ export default {
     fixed: false,
     right: true,
     title: 'Awesome News',
+    articles: [],
+    api: {
+      url: 'https://newsapi.org/v2/everything?sources=ynet',
+      key: 'e3ef295dbf2745cab9ddac02f648444d',
+    },
   }),
+  created() {
+    this.fetchArticles();
+  },
+  methods: {
+    fetchArticles() {
+      fetch(`${this.api.url}&apiKey=${this.api.key}`)
+        .then(res => res.json())
+        .then((data) => {
+          this.articles = data.articles;
+        })
+        .catch((err) => {
+          if (err) throw err;
+        });
+    },
+  },
 };
 </script>
 
