@@ -4,6 +4,8 @@ import './plugins/vuetify';
 import App from './App.vue';
 import store from './store';
 
+Vue.use(require('vue-moment'));
+
 Vue.config.productionTip = false;
 
 new Vue({

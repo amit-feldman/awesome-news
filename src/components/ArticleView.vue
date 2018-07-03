@@ -9,18 +9,21 @@
 
         <v-card-title primary-title>
           <div>
+            <p dir="rtl">
+              <span v-html="article.author" />
+              &middot;
+              <span>{{ article.date | moment('from') }}</span>
+            </p>
+
             <h3
               class="headline font-weight-bold mb-3"
               v-html="article.title"
               dir="rtl"
             />
+
             <p
               v-html="article.description"
               class="subheading"
-              dir="rtl"
-            />
-            <p
-              v-html="`${article.author} &middot; ${article.date}`"
               dir="rtl"
             />
           </div>

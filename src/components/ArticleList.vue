@@ -7,7 +7,9 @@
         dir="rtl"
       />
 
-      <v-list-tile-sub-title v-html="date" />
+      <v-list-tile-sub-title>
+        {{ date | moment('from') }}
+      </v-list-tile-sub-title>
     </v-list-tile-content>
 
     <v-list-tile-avatar>
