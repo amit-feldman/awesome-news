@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile avatar>
+  <v-list-tile avatar @click="onClickArticle">
     <v-list-tile-content class="text-xs-right">
       <v-list-tile-title v-html="title" dir="rtl" />
       <v-list-tile-sub-title v-html="date" />
@@ -19,13 +19,37 @@ export default {
       type: String,
       required: true,
     },
-    img: {
+    description: {
+      type: String,
+      required: true,
+    },
+    author: {
       type: String,
       required: true,
     },
     date: {
       type: String,
       required: true,
+    },
+    img: {
+      type: String,
+      required: true,
+    },
+    url: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    onClickArticle() {
+      this.$emit('clicked-article', {
+        title: this.title,
+        description: this.description,
+        author: this.author,
+        date: this.date,
+        img: this.img,
+        url: this.url,
+      });
     },
   },
 };

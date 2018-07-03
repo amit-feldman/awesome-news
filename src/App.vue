@@ -12,8 +12,12 @@
           v-for="(article, idx) in articles"
           v-bind:key="idx"
           v-bind:title="article.title"
+          v-bind:description="article.description"
+          v-bind:author="article.author"
           v-bind:date="article.publishedAt"
           v-bind:img="article.urlToImage"
+          v-bind:url="article.url"
+          @clicked-article="displayData"
         />
       </v-list>
     </v-navigation-drawer>
@@ -24,8 +28,8 @@
       flat
     >
       <v-toolbar-title>
-        <v-icon color="purple">whatshot</v-icon>
         <span v-html="title" />
+        <v-icon color="purple">whatshot</v-icon>
       </v-toolbar-title>
 
       <v-spacer />
@@ -42,7 +46,9 @@
         no-padding
       >
         <v-layout column>
-          <article-view />
+          <article-view
+            v-bind:article="article"
+          />
         </v-layout>
       </v-container>
     </v-content>
@@ -64,12 +70,13 @@ export default {
     drawer: true,
     fixed: false,
     right: true,
-    title: 'Awesome News',
+    title: 'חדשות מדהים',
     articles: [],
     api: {
       url: 'https://newsapi.org/v2/everything?sources=ynet',
       key: 'e3ef295dbf2745cab9ddac02f648444d',
     },
+    article: {},
   }),
   created() {
     this.fetchArticles();
@@ -84,6 +91,9 @@ export default {
         .catch((err) => {
           if (err) throw err;
         });
+    },
+    displayData(article) {
+      this.article = article;
     },
   },
 };
