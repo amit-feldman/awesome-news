@@ -43,12 +43,9 @@
       <v-container
         fluid
         fill-height
-        no-padding
       >
         <v-layout column>
-          <article-view
-            v-bind:article="article"
-          />
+          <article-view  v-bind:article="article" />
         </v-layout>
       </v-container>
     </v-content>

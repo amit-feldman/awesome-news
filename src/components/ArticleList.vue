@@ -1,12 +1,17 @@
 <template>
   <v-list-tile avatar @click="onClickArticle">
     <v-list-tile-content class="text-xs-right">
-      <v-list-tile-title v-html="title" dir="rtl" />
+      <v-list-tile-title
+        v-html="title"
+        class="font-weight-bold"
+        dir="rtl"
+      />
+
       <v-list-tile-sub-title v-html="date" />
     </v-list-tile-content>
 
     <v-list-tile-avatar>
-      <img :src="img">
+      <img :src="img" />
     </v-list-tile-avatar>
   </v-list-tile>
 </template>

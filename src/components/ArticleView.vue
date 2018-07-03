@@ -1,34 +1,45 @@
 <template>
-  <v-layout row wrap v-if="Object.keys(article).length !== 0">
-    <v-jumbotron class="bg-gradient">
-      <v-container fill-height>
-        <v-layout align-center>
-          <v-flex>
+  <v-layout row wrap align-center v-if="Object.keys(article).length !== 0">
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card dark>
+        <v-card-media
+          :src="article.img"
+          height="320px"
+        />
+
+        <v-card-title primary-title>
+          <div>
             <h3
-              class="headline"
-              color="black"
+              class="headline font-weight-bold mb-3"
               v-html="article.title"
               dir="rtl"
             />
-
             <p
-              class="body-2 my-3"
               v-html="article.description"
+              class="subheading"
               dir="rtl"
             />
+            <p
+              v-html="`${article.author} &middot; ${article.date}`"
+              dir="rtl"
+            />
+          </div>
+        </v-card-title>
 
-            <v-divider class="my-3" />
-
-            <div class="subheading mb-3">
-              <p v-html="`${article.author} &middot; ${article.date}`" dir="rtl" />
-            </div>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-jumbotron>
+        <v-card-actions>
+          <v-btn
+            flat
+            color="orange"
+            v-html="btnCta"
+            :href="article.url"
+            target="_blank"
+          />
+        </v-card-actions>
+      </v-card>
+    </v-flex>
   </v-layout>
 
-  <v-content v-else>
+  <v-content v-else class="no-padding">
     <v-container fluid fill-height no-padding>
       <v-layout column justify-center align-center>
         <h1 class="text-xs-center" dir="rtl">
@@ -49,21 +60,13 @@ export default {
     },
   },
   data: () => ({
-    btnCta: 'Check full Article',
+    btnCta: 'המשך לקרוא',
   }),
 };
 </script>
 
 <style lang="scss" scoped>
-  .bg-gradient {
-    background-image: linear-gradient(
-      to top,
-      #a7a6cb 0%,
-      #8989ba 52%,
-      #8989ba 100%
-    );
-  }
   .no-padding {
-    padding: 0;
+    padding: 0 !important;
   }
 </style>
